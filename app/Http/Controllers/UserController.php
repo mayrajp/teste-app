@@ -3,22 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
-use App\Services\UserService;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-
-    private UserService $userService;
-
-    public function __construct()
+    public function index(Request $request)
     {
-        $this->userService = new UserService();
-    }
+        $search = $request->search;
 
-    public function index()
-    {
-        $users = $this->userService->index();
+        $users = User::where(function ($query) use ($search) {
+            if ($search) {
+                $query->where('name', 'LIKE', '%' . $search . '%');
+                $query->orWhere('email', 'LIKE', '%' . $search . '%');
+                $query->orWhere('cellphone', 'LIKE', '%' . $search . '%');
+                $query->orWhere('surname', 'LIKE', '%' . $search . '%');
+            }
+        })->get();
 
         return view('users.index', [
             'users' => $users
@@ -28,17 +29,15 @@ class UserController extends Controller
     public function show(int $id)
     {
 
-        $user = $this->userService->show($id);
+        $user = User::find($id);
 
-        if($user->count() == 0)
-        {
+        if (!$user = User::find($id)) {
             return redirect()->route('users.index');
         }
 
         return view('users.show', [
             'user' => $user
         ]);
-
     }
 
     public function create()
@@ -48,7 +47,48 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
-        $this->userService->store($request);
+        $data = $request->all();
+        $data['password'] = bcrypt($request->password);
+        User::create($data);
+
+        return redirect()->route('users.index');
+    }
+
+    public function edit(int $id)
+    {
+        if (!$user = User::find($id)) {
+            return redirect()->route('users.index');
+        }
+
+        return view('users.edit', [
+            'user' => $user
+        ]);
+    }
+
+    public function update(UserRequest $request, int $id)
+    {
+        if (!$user = User::find($id)) {
+            return redirect()->route('users.index');
+        }
+
+        $data = $request->all();
+
+        if ($request->password) {
+            $data['password'] = bcrypt($request->password);
+        }
+
+        $user->update($data);
+
+        return redirect()->route('users.index');
+    }
+
+    public function destroy(int $id)
+    {
+        if (!$user = User::find($id)) {
+            return redirect()->route('users.index');
+        }
+
+        $user->delete();
 
         return redirect()->route('users.index');
     }

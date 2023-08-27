@@ -21,12 +21,28 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $userId = $this->id ?? '';
+
+        $rules  = [
             "name" => "required|string|max:255|min:3",
             "surname" => "required|string|max:255|min:3",
-            "email" => "required|email|unique:users",
+            "email" => "required|email|unique:users,email,{$userId},id",
             "password" => "required|min:4|max:20",
-            "cellphone" => "required",
+            "cellphone" => "max:11",
         ];
+
+        if($this->method() == 'PUT' || $this->method() == 'PATCH'){
+
+            $rules['password'] = [ 
+                "password" => [
+                    "nullable",
+                    "min:4",
+                    "max:20"
+                ],
+            ];
+        }
+
+        return $rules;
+       
     }
 }
