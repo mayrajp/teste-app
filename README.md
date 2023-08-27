@@ -32,7 +32,9 @@
 
 `http://localhost:8000/fake`
 
+### To run tests
 
+`./vendor/bin/phpunit`
 
 
 
