@@ -37,7 +37,7 @@
         </div>
         <div class="mb-6">
             <label class="block mb-2 text-sm font-medium text-gray-900 white:text-white">Celular</label>
-            <input type="number" id="cellphone" name="cellphone"
+            <input type="text" id="cellphone" name="cellphone"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 white:bg-gray-700 white:border-gray-600 white:placeholder-gray-400 white:text-white white:focus:ring-blue-500 white:focus:border-blue-500"
                 value="{{ old('cellphone') }}" required>
         </div>

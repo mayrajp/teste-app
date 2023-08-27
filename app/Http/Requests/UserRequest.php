@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
             "surname" => "required|string|max:255|min:3",
             "email" => "required|email|unique:users,email,{$userId},id",
             "password" => "required|min:4|max:20",
-            "cellphone" => "max:11",
+            "cellphone" => "max:17",
         ];
 
         if($this->method() == 'PUT' || $this->method() == 'PATCH'){
