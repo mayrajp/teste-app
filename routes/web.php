@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FakeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +25,10 @@ Route::get('/users/create', [UserController::class, 'create'])->name('users.crea
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
 Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
 Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+Route::get('/fake', [FakeController::class, 'index'])->name('fake.index');
+Route::get('/fake/generate', [FakeController::class, 'generate'])->name('fake.generate');
+
+
 
 

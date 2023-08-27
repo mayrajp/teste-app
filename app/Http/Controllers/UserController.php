@@ -19,7 +19,7 @@ class UserController extends Controller
                 $query->orWhere('cellphone', 'LIKE', '%' . $search . '%');
                 $query->orWhere('surname', 'LIKE', '%' . $search . '%');
             }
-        })->get();
+        })->paginate(15);
 
         return view('users.index', [
             'users' => $users
