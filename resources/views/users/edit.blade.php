@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Editar usuario')
+@section('title', 'Editar usuário')
 
 @section('content')
 
-    <h1>Editar usuario {{ $user->name }} </h1>
+    <h1>Editar usuário {{ $user->name }} </h1>
 
     @if ($errors->any())
         <ul class="errors">

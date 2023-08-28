@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Listagem de usuarios')
+@section('title', 'Listagem de usuários')
 
 @section('content')
 
     <div class="container mx-auto px-4 sm:px-8">
         <div class="py-8">
             <div class="mb-5">
-                <h2 class="text-2xl font-semibold leading-tight ">Listagem de usuarios
+                <h2 class="text-2xl font-semibold leading-tight ">Listagem de usuários
                     <a href="{{ route('users.create') }}"
                         class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mr-5 rounded">
                         Novo

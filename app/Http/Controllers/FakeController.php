@@ -22,7 +22,7 @@ class FakeController extends Controller
         
         $users = User::all();
 
-        if ($users->count() == 100000) {
+        if ($users->count() >= 100000) {
 
             return redirect()->route('fake.index')->with('success', '100.000 usuaerios ja foram criados.');
         }
@@ -33,11 +33,11 @@ class FakeController extends Controller
 
         $users = User::all();
 
-        if ($users->count() == 100000) {
+        if ($users->count() >= 100000) {
 
-            return redirect()->route('fake.index')->with('success', '100.000 usuarios criados.');
+            return redirect()->route('fake.index')->with('success', '100.000 usuários criados.');
         }
 
-        return redirect()->route('fake.index')->with('success', '5.000 usuarios criados.');
+        return redirect()->route('fake.index')->with('success', '5.000 usuários criados.');
     }
 }

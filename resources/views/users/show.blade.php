@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Detalhes do usuario')
+@section('title', 'Detalhes do usuário')
 
 @section('content')
 
-    <h1>Dados do usuario {{ $user->name }}</h1>
+    <h1>Dados do usuário {{ $user->name }}</h1>
 
     <ul
         class="w-100 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg whie:bg-gray-700 whie:border-gray-600 whie:text-white">
